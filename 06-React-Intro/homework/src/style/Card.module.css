@@ -1,0 +1,36 @@
+.btn{
+    background-color: pink;
+    width: 30px;
+    border-radius: 7px;
+    margin: 10px;
+    align-self: flex-end;
+}
+
+.btnColor{
+    color: black;
+}
+
+.btn:hover{
+    color: pink;
+    background-color: black;
+}
+
+.middleDiv{
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-content: center;
+    border: 3px solid gray;
+    border-radius: 10px;
+    height: 400px;
+}
+
+.temperature{
+    margin: 5px;
+}

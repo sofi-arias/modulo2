@@ -1,0 +1,7 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    background-color: cadetblue;
+    justify-content: space-evenly;
+    align-items: center;
+}
