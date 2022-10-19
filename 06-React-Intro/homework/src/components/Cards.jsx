@@ -1,10 +1,12 @@
 import React from 'react';
 import Card from './Card';
+import styles from "./Cards.module.css";
+
 
 export default function Cards(props) {
 
   return ( 
-  <div>
+  <div className={styles.container}>
     {props.cities.map(
       city=><Card
       max={city.main.temp_max}
