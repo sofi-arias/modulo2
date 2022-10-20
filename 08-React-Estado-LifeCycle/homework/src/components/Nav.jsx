@@ -6,7 +6,6 @@ import './Nav.css';
 function Nav({onSearch}) {
   return (
     <div>
-      <img src={Logo} alt="logo" />
       <SearchBar onSearch={onSearch}/>
     </div>
   );

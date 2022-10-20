@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import './App.css';
-import Nav from './components/Nav.jsx';
-import Cards from './components/Cards';
+import Nav from './components/Nav.jsx'
+import Cards from './components/Cards.jsx';
 
 export default function App() {
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState([])
 
-  const apiKey = "4ae2636d8dfbdc3044bede63951a019b"
+  const apiKey = "4ae2636d8dfbdc3044bede63951a019b";
 
   function onSearch(ciudad) {
-    
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric`)
       .then(r => r.json())
       .then((recurso) => {
@@ -33,22 +32,19 @@ export default function App() {
         }
       });
 
-  }
+    }
     
-  
-
-  function onClose(id){
-    setCities(oldCities=>oldCities.filter(c=>c.id !== id));
-  }
-
-
+    function onClose(id){
+      setCities(oldCities => oldCities.filter(c => c.id !== id));
+    }
 
 
   return (
     <div className="App">
       { /* Tu código acá: */ }
       <Nav onSearch={onSearch}/>
-      <Cards cities={cities} onClose={onClose} />
+      <Cards cities={cities} onClose={onClose}/>
     </div>
   );
 }
+
