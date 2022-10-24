@@ -1,62 +1,59 @@
 import React from 'react';
 
-export function validate(input) {
-  let errors = {};
-  if (!input.username) {
-    errors.username = 'Username is required';
-  } else if (!/\S+@\S+\.\S+/.test(input.username)) {
-    errors.username = 'Username is invalid';
+export function validate(input){
+  let error ={};
+  if(!input.username){
+    error.username = 'Username is required';
+  }else if(!/\S+@\S+\.\S+/.test(input.username)){
+    error.username = 'Username is invalid';
   }
-  if (!input.password) {
-    errors.password = 'Password is required';
-  } else if (!/(?=.*[0-9])/.test(input.password)) {
-    errors.password = 'Password is invalid';
+  if(!input.password){
+    error.password = 'Password is required';
+  }else if(!/(?=.*[0-9])/.test(input.password)){
+    error.password = 'Password is invalid';
   }
+  return error;
 
-  return errors;
-};
+}
 
 export default function  Form() {
 
-  const [input, setInput] = React.useState({
-    username:'',
-    password:'',
+  let [input, setInput] = React.useState({
+    username: '',
+    password: ''
   });
 
-  const [errors, setErrors] = React.useState({});
+  let[error, setError] = React.useState({});
 
-  const handleInputChange = function (e){
-    setInput ({
-      ...input,
-      [e.target.name]: e.target.value
-    });
-
-    setErrors(validate({
-      ...input,
-      [e.target.name]: e.target.value
+  let handleInputChange = (e) => {
+    //[e.target.name] ->manipular dos input distintos con la misma funcion
+    setInput(prev => ({
+      ...prev,
+      [e.target.name] : e.target.value,
     }));
-  }
+    let objError = validate({...input, [e.target.name]:e.target.value})
+    setError(objError);
+  
+  };
+
 
   return (
-      <>
-        <form>
-          <label htmlFor='username'>Username:</label>
-          <input className={errors.username && 'danger'} type='text' name='username' id='username' autoComplete='off'
-          onChange={(e) => handleInputChange(e)} value={input.username} />
-          {errors.username && (
-            <p className='danger'>{errors.username}</p>
-          )}
-
-          <label htmlFor='password'>Password:</label>
-          <input className={errors.password && 'danger'} type='password' name='password' id='password' onChange={(e) =>
-          handleInputChange(e)} value={input.password} />
-          {errors.password && (
-            <p className='danger'>{errors.password}</p>
-          )}
-
-          <input type='submit' />
-        </form>
-        
-      </>
+      <form>
+        <div>
+          <label>Username:</label>
+          <input type={"text"} value={input.username} onChange={handleInputChange} name={'username'} className={error.username && 'danger'} />
+          {
+            error.username && (<p>{error.username}</p>)
+          }
+        </div>
+        <div>
+          <label>Password:</label>
+          <input type={"password"} value={input.password} onChange={handleInputChange} name={'password'} className={error.password && 'danger'} />
+          {
+            error.password && (<p>{error.password}</p>) 
+          }
+        </div>
+        <input type={'submit'} value={'Ingresar'}/>
+      </form>
   )
 }
